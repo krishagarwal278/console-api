@@ -98,10 +98,11 @@ spec:
                         name:
                           description: |-
                             name is the unique name of a capability.
-                            Available capabilities are LightspeedButton and GettingStartedBanner.
+                            Available capabilities are LightspeedButton, GettingStartedBanner and GuidedTourFeature.
                           enum:
                           - LightspeedButton
                           - GettingStartedBanner
+                          - GuidedTourFeature
                           type: string
                         visibility:
                           description: visibility defines the visibility state of
