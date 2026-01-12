@@ -48821,7 +48821,7 @@ func schema_openshift_api_operator_v1_Capability(ref common.ReferenceCallback) c
 				Properties: map[string]spec.Schema{
 					"name": {
 						SchemaProps: spec.SchemaProps{
-							Description: "name is the unique name of a capability. Available capabilities are LightspeedButton, GettingStartedBanner and GuidedTourFeature.",
+							Description: "name is the unique name of a capability. Available capabilities are LightspeedButton, GettingStartedBanner, and GuidedTour.",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
