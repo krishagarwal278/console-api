@@ -915,14 +915,6 @@ var (
 								enable(inClusterProfile(Hypershift), inDefault(), inOKD(), inTechPreviewNoUpgrade(), inDevPreviewNoUpgrade()).
 								mustRegister()
 
-	FeatureGateDRAPartitionableDevices = newFeatureGate("DRAPartitionableDevices").
-						reportProblemsToJiraComponent("Node").
-						contactPerson("harche").
-						productScope(kubernetes).
-						enhancementPR("https://github.com/kubernetes/enhancements/issues/4815").
-						enable(inDevPreviewNoUpgrade(), inTechPreviewNoUpgrade()).
-						mustRegister()
-
 	FeatureGateConfigurablePKI = newFeatureGate("ConfigurablePKI").
 					reportProblemsToJiraComponent("kube-apiserver").
 					contactPerson("sanchezl").

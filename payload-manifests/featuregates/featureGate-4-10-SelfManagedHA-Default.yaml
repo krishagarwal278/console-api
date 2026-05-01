@@ -120,9 +120,6 @@
                         "name": "DNSNameResolver"
                     },
                     {
-                        "name": "DRAPartitionableDevices"
-                    },
-                    {
                         "name": "DyanmicServiceEndpointIBMCloud"
                     },
                     {
