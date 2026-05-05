@@ -1837,6 +1837,8 @@ tests:
                   units:
                     - "kubelet.service"
                     - "crio.service"
+              softirqs:
+                collectionPolicy: Collect
       expected: |
         apiVersion: config.openshift.io/v1alpha1
         kind: ClusterMonitoring
@@ -1859,6 +1861,8 @@ tests:
                   units:
                     - "kubelet.service"
                     - "crio.service"
+              softirqs:
+                collectionPolicy: Collect
     - name: Should be able to create NodeExporterConfig with all fields
       initial: |
         apiVersion: config.openshift.io/v1alpha1
@@ -2145,6 +2149,59 @@ tests:
                 collectionPolicy: Collect
                 collect: {}
       expectedError: "spec.nodeExporterConfig.collectors.netClass.collect: Invalid value"
+    - name: Should accept softirqs collector with Collect
+      initial: |
+        apiVersion: config.openshift.io/v1alpha1
+        kind: ClusterMonitoring
+        spec:
+          nodeExporterConfig:
+            collectors:
+              softirqs:
+                collectionPolicy: Collect
+      expected: |
+        apiVersion: config.openshift.io/v1alpha1
+        kind: ClusterMonitoring
+        spec:
+          nodeExporterConfig:
+            collectors:
+              softirqs:
+                collectionPolicy: Collect
+    - name: Should accept softirqs collector with DoNotCollect
+      initial: |
+        apiVersion: config.openshift.io/v1alpha1
+        kind: ClusterMonitoring
+        spec:
+          nodeExporterConfig:
+            collectors:
+              softirqs:
+                collectionPolicy: DoNotCollect
+      expected: |
+        apiVersion: config.openshift.io/v1alpha1
+        kind: ClusterMonitoring
+        spec:
+          nodeExporterConfig:
+            collectors:
+              softirqs:
+                collectionPolicy: DoNotCollect
+    - name: Should reject softirqs collector with invalid collectionPolicy
+      initial: |
+        apiVersion: config.openshift.io/v1alpha1
+        kind: ClusterMonitoring
+        spec:
+          nodeExporterConfig:
+            collectors:
+              softirqs:
+                collectionPolicy: Invalid
+      expectedError: 'spec.nodeExporterConfig.collectors.softirqs.collectionPolicy: Unsupported value: "Invalid"'
+    - name: Should reject softirqs collector with empty collectionPolicy
+      initial: |
+        apiVersion: config.openshift.io/v1alpha1
+        kind: ClusterMonitoring
+        spec:
+          nodeExporterConfig:
+            collectors:
+              softirqs: {}
+      expectedError: 'spec.nodeExporterConfig.collectors.softirqs.collectionPolicy: Required value'
     - name: Should reject NodeExporterConfig with zero request
       initial: |
         apiVersion: config.openshift.io/v1alpha1
